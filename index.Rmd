@@ -1,0 +1,76 @@
+---
+title: "Transcriptomics visualization"
+author: "mhoque"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: scroll
+    social: menu
+    theme: cerulean
+    css: style.css
+    source_code: embed
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(knitr)
+load(file="transcriptomics_viz.RData")
+
+```
+
+Row  
+-----------------------------------------------------------------------
+
+### Volcano Plot
+
+```{r}
+volcano_plot
+
+```
+
+>Volcano plot showing up- and down-regulated genes.
+
+### PCA Plot
+
+```{r}
+pca_plot
+
+```
+
+>PCA plot: control vs treatment
+
+Row
+-----------------------------------------------------------------------
+
+### Heatmap 
+
+```{r}
+
+heatmap
+
+```
+
+>Heatmap of highly significant genes (lfc > 2 and p-value < 10e-10)
+
+
+### Pathview
+
+```{r}
+include_graphics("pae03070.pae.kegg.png", dpi=600)
+
+```
+
+> Example pathway enrichment plot
+
+Row {data-width=1000}
+-------------------------------------
+
+### Table 
+
+```{r}
+fc_table_sig
+
+```
+
+>Details of the differentially expressed genes (1 < lfc < -1 and p < 0.05).
+
